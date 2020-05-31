@@ -33,7 +33,6 @@ namespace NetMeter
             foreach (var task in taskList)
             {
                 var data = await task;
-                //Console.WriteLine($" {data.Item1} -> {data.Item2}");
                 System.IO.File.AppendAllText("d:\\logs.txt",$"{data.Item1},{data.Item2},{data.Item3}\n");
             }
 
@@ -49,7 +48,9 @@ namespace NetMeter
             var client = new HttpClient();
             var result = await client.GetAsync(url);
             s.Stop();
+
             var threadCount=int.Parse(await result.Content.ReadAsStringAsync());
+
             Console.WriteLine($"req:{number} | Threads: {threadCount} | Duration: {s.ElapsedMilliseconds}");
             return new Tuple<int, long,int>(
                 threadCount,
