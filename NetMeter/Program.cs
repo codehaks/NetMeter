@@ -13,15 +13,15 @@ namespace NetMeter
         static async Task Main(string[] args)
         {
 
-            var requestCount = 1000;//int.Parse(args[0]);
-            var url = "http://localhost:5000/api/sync";// args[1];
+            var requestCount = int.Parse(args[0]);
+            var url = args[1];
 
             var taskList = new List<Task<Tuple<int, long,int>>>();
             var s = new Stopwatch();
             s.Start();
             for (int i = 0; i < requestCount; i++)
             {
-                 url = "http://localhost:5000/api/sync/" + i;
+
                 taskList.Add(GetElaspedTime(url,i));
             }
 
